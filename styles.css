@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600&display=swap');
+
+:root{
+    --fonte-principal: "Kumbh Sans";
+    --fundo: #17162E;
+    --branco: #FFF;
+    --cinza: #ACACAC;
+    --cinza-busca: #8A8A8A;
+    --fundo-busca: #454558;
+    --fundo-card: #1D1C3B;
+}
+
+.navegacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+}
+
+.navegacao-titulo{
+    font-size: 36px;
+    color: var(--branco);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.busca{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    width: 634px;
+    background-color: var(--fundo-busca);
+    border: 1px solid var(--fundo-busca);
+    border-radius: 8px;
+    padding: 0 1rem;
+    margin: 3rem 0 2rem 0;
+}
+
+.busca-input{
+    border: none;
+    background: transparent;
+    width: inherit;
+    color: var(--branco);
+    font-family: var(--fonte-principal);
+    font-size: 18px;
+    border: 1px solid transparent;
+    border-radius: inherit;
+}
+
+.busca-input::placeholder{
+    color: var(--cinza-busca);
+    font-family: var(--fonte-principal);
+    font-size: 18px;
+}
+
+.icone-busca{
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url(assets/search-icon.svg) no-repeat center;
+    cursor: pointer;
+}
+
+.opcao-mostrar{
+    display: flex;
+    gap: 0.75rem;
+}
+
+.filmes-favoritos input{
+    display: none;
+}
+
+.filmes-favoritos span{
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-radius: 4px;
+    border: 2px solid #706EA8;
+    background-color: var(--fundo);
+}
+
+.filmes-favoritos input:checked + span {
+    content: url("assets/checkmark.svg");
+    background-color: #706EA8;
+}
+
+.opcao-texto{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--branco);
+}
+
+.cards{
+    padding: 0 6.75rem 4.1rem 6.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.cards-card{
+    background-color: var(--fundo-card);
+    border-radius: 8px;
+    box-shadow: 0.33352px 0.24932px 2.42246px 0px rgba(0, 0, 0, 0.03), 1.4367px 1.07399px 4.56719px 0px rgba(0, 0, 0, 0.05), 3.46346px 2.58907px 7.6377px 0px rgba(0, 0, 0, 0.06), 6.56775px 4.90965px 12.8375px 0px rgba(0, 0, 0, 0.08), 10.90349px 8.15079px 21.37012px 0px rgba(0, 0, 0, 0.09), 16.62462px 12.42755px 34.43906px 0px rgba(0, 0, 0, 0.10), 23.88506px 17.85501px 53.24785px 0px rgba(0, 0, 0, 0.12), 32.83875px 24.54825px 79px 0px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    padding: 1.8rem 2.4rem;
+    gap: 4.8rem;
+}
+
+.cards-imagem{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.cards-titulo{
+    font-family: var(--fonte-principal);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--branco);
+    text-decoration: none;
+}
+
+.cards-avaliacao{
+    display: flex;
+    gap: 2.8rem;
+    margin-top: 1.5rem;
+}
+
+.avaliacao-item{
+    display: flex;
+    gap: 0.75rem;
+}
+
+.avaliacao-texto{
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--branco);
+}
+
+.avaliacao-coracao{
+    cursor: pointer;
+}
+
+[data-favoritar="não"]{
+    content: url("assets/coraçãozinho\ apagado.svg");
+}
+
+[data-favoritar="sim"]{
+    content: url("assets/coraçãozinho\ acesso.svg");
+}
+
+.card-descricao{
+    font-size: 18px;
+}
+
+

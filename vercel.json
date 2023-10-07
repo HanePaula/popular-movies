@@ -1,0 +1,14 @@
+{
+
+    "headers": [
+        {
+            "source": "/cors.js",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/javascript"
+                }
+            ]
+        }
+    ]
+}

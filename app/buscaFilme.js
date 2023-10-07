@@ -9,7 +9,7 @@ var query = document.getElementById("busca-query");
 async function buscaFilme(query) {
     var lista = document.getElementById("cards");
 
-    while(lista.firstChild){
+    while (lista.firstChild) {
         lista.removeChild(lista.firstChild);
     }
 
@@ -17,13 +17,27 @@ async function buscaFilme(query) {
 
     const listaFavoritos = JSON.parse(favoritos.getFilmesFavoritos());
 
-    listaApi.forEach((e) => {
-        if(listaFavoritos.find(f => f.descricao === e.descricao)){
-            e.favoritado = true;
+    try {
+        if (listaFavoritos === null) {
+            listaApi.forEach((filme) => {
+                lista.appendChild(mostraFilmes.criaFilme(filme.imagem, filme.titulo, filme.avaliacao,
+                    filme.ano, filme.descricao, filme.favoritado));
+            })
+            favoritos.favoritaFilme(listaApi);
         }
-        lista.appendChild(mostraFilmes.criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
-    })
-    favoritos.favoritaFilme(listaApi);
+
+        else {
+            listaApi.forEach((filme) => {
+                if (listaFavoritos.find(favorito => favorito.descricao === filme.descricao)) {
+                    filme.favoritado = true;
+                }
+                lista.appendChild(mostraFilmes.criaFilme(filme.imagem, filme.titulo, filme.avaliacao, filme.ano, filme.descricao, filme.favoritado));
+            })
+            favoritos.favoritaFilme(listaApi);
+        }
+    } catch (erro) {
+        console.log(erro.message);
+    }
 }
 
 const formulario = document.getElementById("busca-form");

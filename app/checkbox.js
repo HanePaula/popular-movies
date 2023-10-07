@@ -14,11 +14,22 @@ export default function mostraFilmesFavoritos() {
             lista.removeChild(lista.firstChild);
         }
 
-        listaFavoritos.forEach((favoritos) => {
-            lista.appendChild(mostraFilmes.criaFilme(favoritos.imagem, favoritos.titulo, favoritos.avaliacao, favoritos.ano, favoritos.descricao, favoritos.favoritado));
-        })
+        try {
+            if (listaFavoritos === null) {
+                
+            }
 
-        favoritos.favoritaFilme(listaFavoritos);
+            else {
+                listaFavoritos.forEach((favoritos) => {
+                    lista.appendChild(mostraFilmes.criaFilme(favoritos.imagem, favoritos.titulo, favoritos.avaliacao, 
+                        favoritos.ano, favoritos.descricao, favoritos.favoritado));
+                })
+        
+                favoritos.favoritaFilme(listaFavoritos);
+            }
+        } catch (erro) {
+            console.log(erro.message);
+        }
     }
 
     else if (buscaResultado !== undefined) {

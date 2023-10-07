@@ -55,21 +55,26 @@ async function listaDeFilmes() {
         lista.removeChild(lista.firstChild);
     }
     try {
-        listaApi.forEach((e) => {
-            if (listaFavoritos.find(f => f.descricao === e.descricao && f.titulo === e.titulo)) {
-                e.favoritado = true;
-            }
-            lista.appendChild(criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
-        })
-        favoritos.favoritaFilme(listaApi);
-    }
 
-    catch (erro) {
+        if (listaFavoritos === null) {
+            listaApi.forEach((filme) => {
+                lista.appendChild(criaFilme(filme.imagem, filme.titulo, filme.avaliacao, filme.ano, filme.descricao, filme.favoritado))
+            })
+            favoritos.favoritaFilme(listaApi);
+        }
+        else {
+            listaApi.forEach((filme) => {
+                if (listaFavoritos.find(favorito => favorito.descricao === filme.descricao && favorito.titulo === filme.titulo)) {
+                    filme.favoritado = true;
+                }
+                lista.appendChild(criaFilme(filme.imagem, filme.titulo, filme.avaliacao, filme.ano,
+                     filme.descricao, filme.favoritado));
+            })
+            favoritos.favoritaFilme(listaApi);
+        }
+
+    } catch (erro) {
         console.log(erro.message);
-        listaApi.forEach((e) => {
-            lista.appendChild(criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
-        })
-        favoritos.favoritaFilme(listaApi);
     }
 }
 

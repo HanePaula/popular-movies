@@ -3,10 +3,10 @@ import { favoritos } from "./favoritaFilme.js";
 
 var lista = document.getElementById("cards");
 
-function criaFilme(imagem, titulo, avaliacao, ano, descricao, favoritado){
+function criaFilme(imagem, titulo, avaliacao, ano, descricao, favoritado) {
     const filme = document.createElement("div");
     filme.className = "cards-card";
-    if(favoritado == false){
+    if (favoritado == false) {
         filme.innerHTML = `<div class="circular">
         <img src="${imagem}" class="cards-imagem">
         </div>
@@ -25,7 +25,7 @@ function criaFilme(imagem, titulo, avaliacao, ano, descricao, favoritado){
         </div>
         <p class="card-descricao">${descricao}</p>`
     }
-    else{
+    else {
         filme.innerHTML = `<div class="circular">
         <img src="${imagem}" class="cards-imagem">
         </div>
@@ -51,17 +51,26 @@ async function listaDeFilmes() {
     const listaApi = await conectaApi.transformaLista("mostrar");
     const listaFavoritos = JSON.parse(favoritos.getFilmesFavoritos());
 
-    while(lista.firstChild){
+    while (lista.firstChild) {
         lista.removeChild(lista.firstChild);
     }
+    try {
+        listaApi.forEach((e) => {
+            if (listaFavoritos.find(f => f.descricao === e.descricao && f.titulo === e.titulo)) {
+                e.favoritado = true;
+            }
+            lista.appendChild(criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
+        })
+        favoritos.favoritaFilme(listaApi);
+    }
 
-    listaApi.forEach((e) => {
-        if(listaFavoritos.find(f => f.descricao === e.descricao && f.titulo === e.titulo)){
-            e.favoritado = true;
-        }
-        lista.appendChild(criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
-    })
-    favoritos.favoritaFilme(listaApi);
+    catch (erro) {
+        console.log(erro.message);
+        listaApi.forEach((e) => {
+            lista.appendChild(criaFilme(e.imagem, e.titulo, e.avaliacao, e.ano, e.descricao, e.favoritado));
+        })
+        favoritos.favoritaFilme(listaApi);
+    }
 }
 
 listaDeFilmes();

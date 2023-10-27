@@ -159,34 +159,4 @@
     font-size: 18px;
 }
 
-@media screen and (max-width: 768px) {
-    .busca {
-        width: 70vw;
-    }
-
-    .busca-input::placeholder {
-        color: var(--fundo-busca);
-    }
-
-    .cards {
-        padding: 0;
-        padding-bottom: 4.1rem;
-    }
-
-    .cards-card {
-        gap: 1rem;
-        padding: 0.5rem 0.5rem;
-    }
-
-    .card-descricao {
-        display: none;
-    }
-
-    .cards-imagem {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-
 
